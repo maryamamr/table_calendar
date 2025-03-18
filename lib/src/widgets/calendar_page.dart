@@ -87,7 +87,7 @@ setState(() {
 
       children: List.generate(
         7,
-        (index) => widget.dowBuilder!(context, widget.visibleDays[index]),
+        (index) => Flexible(child: widget.dowBuilder!(context, widget.visibleDays[index])),
       ),
     );
   }
