@@ -43,12 +43,14 @@ class CalendarPage extends StatelessWidget {
         children: [
           if (weekNumberVisible) _buildWeekNumbers(context),
           Expanded(
-            child: Table(
-              border: tableBorder,
-              children: [
-                if (dowVisible) _buildDaysOfWeek(context),
-             if(d7k!=null)   ..._buildCalendarDays(context),
-              ],
+            child: SingleChildScrollView(
+              child: Table(
+                border: tableBorder,
+                children: [
+                  if (dowVisible) _buildDaysOfWeek(context),
+               if(d7k!=null)   ..._buildCalendarDays(context),
+                ],
+              ),
             ),
           ),
         ],

@@ -53,7 +53,8 @@ class TableCalendar<T> extends StatefulWidget {
   ///
   /// Days before it will use `disabledStyle` and trigger `onDisabledDayTapped` callback.
   final DateTime firstDay;
-      final Widget? d7k;
+
+  final Widget?d7k;
 
   /// The last active day of `TableCalendar`.
   /// Blocks swiping to days after it.
@@ -488,8 +489,8 @@ class _TableCalendarState<T> extends State<TableCalendar<T>> {
               );
             },
           ),
-        Expanded(
-          
+        Flexible(
+          flex: widget.shouldFillViewport ? 1 : 0,
           child: TableCalendarBase(
             d7k: widget.d7k,
             onCalendarCreated: (pageController) {
