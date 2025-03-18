@@ -101,7 +101,7 @@ class CalendarPage extends StatelessWidget {
     );
 
     // Add `d7k` after the first row (index == 0)
-    if (index == 0 && d7k != null) {
+   
       rows.add(
         TableRow(
           children: List.generate(
@@ -120,7 +120,7 @@ class CalendarPage extends StatelessWidget {
         ),
       );
     }
-  }
+  
 
   return rows;
 }
