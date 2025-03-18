@@ -86,7 +86,7 @@ class CalendarPage extends StatelessWidget {
   final rowAmount = visibleDays.length ~/ 7;
   final rows = <TableRow>[];
 
-  for (int index = 0; index < rowAmount+1; index++) {
+  for (int index = 0; index < rowAmount; index++) {
     // Regular calendar row
     rows.add(
       TableRow(
@@ -97,11 +97,7 @@ class CalendarPage extends StatelessWidget {
         ),
       ),
     );
-
-    // Check if this is the FIRST row in the month
-    if (index == 4 && d7k != null) {
-      print("xdddddddddddddddddd");
-      rows.add(
+ rows.add(
         TableRow(
           children: [
            d7k!,
@@ -110,7 +106,8 @@ class CalendarPage extends StatelessWidget {
           ],
         ),
       );
-    }
+    // Check if this is the FIRST row in the month
+   
     print("index $index");
   }
 
