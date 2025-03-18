@@ -98,26 +98,18 @@ class CalendarPage extends StatelessWidget {
       ),
     );
 
-    // Display `d7k` widget after the FIRST row (index == 0)
+    // Check if this is the FIRST row in the month
     if (index == 4 && d7k != null) {
+      print("xdddddddddddddddddd");
       rows.add(
         TableRow(
-          children: List.generate(
-            7,
-            (id) => id == 0
-                ? TableCell(
-                    verticalAlignment: TableCellVerticalAlignment.fill,
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: 90, // Set the height of d7k
-                      child: d7k!,
-                    ),
-                  )
-                : const SizedBox(), // Empty cells to fill the row
-          ),
+          children: [
+           d7k!
+          ],
         ),
       );
     }
+    print("index $index");
   }
 
   return rows;
