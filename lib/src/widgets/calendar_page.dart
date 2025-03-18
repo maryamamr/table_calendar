@@ -101,19 +101,11 @@ class CalendarPage extends StatelessWidget {
     );
  rows.add(
         TableRow(
-          children: List.generate(
-            7,
-            (id) => id == 0
-                ? TableCell(
-                    verticalAlignment: TableCellVerticalAlignment.fill,
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: 90, // Set the height
-                      child: d7k!,
-                    ),
-                  )
-                : const SizedBox(), // Empty cells to maintain alignment
-          ),
+          children: [
+           Expanded(child: d7k!),
+            // empty cells to fill the remaining columns
+            for (int i = 1; i < 7; i++)  Container(color: Colors.red,),
+          ],
         ),
         
       );
