@@ -98,17 +98,29 @@ class CalendarPage extends StatelessWidget {
       ),
     );
 
-    // Check if this is the FIRST row in the month
+    // Check if this is the FIFTH row in the month
     if (index == 4 && d7k != null) {
-      print("xdddddddddddddddddd");
+      print("Adding d7k at index $index");
+
       rows.add(
         TableRow(
-          children: [
-           d7k!
-          ],
+          children: List.generate(
+            7,
+            (id) => id == 0
+                ? TableCell(
+                    verticalAlignment: TableCellVerticalAlignment.middle,
+                    child: SizedBox(
+                      width: double.infinity, // Ensures full width
+                      height: 90, // Your desired height
+                      child: d7k!,
+                    ),
+                  )
+                : const SizedBox(), // Empty cells for alignment
+          ),
         ),
       );
     }
+
     print("index $index");
   }
 
