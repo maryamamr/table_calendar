@@ -118,6 +118,7 @@ class CalendarPage extends StatelessWidget {
         ),
       );
     }
+    print("index $index");
   }
 
   return rows;
