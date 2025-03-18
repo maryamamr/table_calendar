@@ -39,13 +39,13 @@ class CalendarPage extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          if (weekNumberVisible) _buildWeekNumbers(context),
+          // if (weekNumberVisible) _buildWeekNumbers(context),
           Expanded(
             child: Table(
               border: tableBorder,
               children: [
-                if (dowVisible) _buildDaysOfWeek(context),
-                ..._buildCalendarDays(context),
+                // if (dowVisible) _buildDaysOfWeek(context),
+                // ..._buildCalendarDays(context),
               ],
             ),
           ),
