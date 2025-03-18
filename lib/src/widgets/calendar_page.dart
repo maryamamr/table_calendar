@@ -108,7 +108,8 @@ List<Row> _buildCalendarDays(BuildContext context) {
     );
 
     // Add the full-width d7k row
-    rows.add(
+   if(index==2&& widget.d7k!=null){
+     rows.add(
       Row(
         children: [
           // First cell spans all 7 columns via Expanded
@@ -122,6 +123,7 @@ List<Row> _buildCalendarDays(BuildContext context) {
         ],
       ),
     );
+   }
   }
 
   return rows;
