@@ -102,7 +102,7 @@ List<Row> _buildCalendarDays(BuildContext context) {
        
         children: List.generate(
           7,
-          (id) => widget.dayBuilder(context, widget.visibleDays[index * 7 + id]),
+          (id) => Flexible(child: widget.dayBuilder(context, widget.visibleDays[index * 7 + id])),
         ),
       ),
     );
