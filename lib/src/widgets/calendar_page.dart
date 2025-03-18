@@ -53,7 +53,7 @@ class _CalendarPageState extends State<CalendarPage> {
               child: Column(
               
                 children: [
-                  // if (widget.dowVisible) _buildDaysOfWeek(context),
+                  if (widget.dowVisible) _buildDaysOfWeek(context),
                if(widget.d7k!=null)   ..._buildCalendarDays(context),
                 ],
               ),
@@ -82,9 +82,9 @@ setState(() {
     );
   }
 
-  TableRow _buildDaysOfWeek(BuildContext context) {
-    return TableRow(
-      decoration: widget.dowDecoration,
+  Row _buildDaysOfWeek(BuildContext context) {
+    return Row(
+
       children: List.generate(
         7,
         (index) => widget.dowBuilder!(context, widget.visibleDays[index]),
