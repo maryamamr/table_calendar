@@ -4,7 +4,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class CalendarPage extends StatelessWidget {
+class CalendarPage extends StatefulWidget {
   final Widget Function(BuildContext context, DateTime day)? dowBuilder;
   final Widget Function(BuildContext context, DateTime day) dayBuilder;
   final Widget Function(BuildContext context, DateTime day)? weekNumberBuilder;
@@ -35,20 +35,25 @@ class CalendarPage extends StatelessWidget {
         assert(!weekNumberVisible || weekNumberBuilder != null);
 
   @override
+  State<CalendarPage> createState() => _CalendarPageState();
+}
+
+class _CalendarPageState extends State<CalendarPage> {
+  @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: tablePadding ?? EdgeInsets.zero,
+      padding: widget.tablePadding ?? EdgeInsets.zero,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          if (weekNumberVisible) _buildWeekNumbers(context),
+          if (widget.weekNumberVisible) _buildWeekNumbers(context),
           Expanded(
             child: SingleChildScrollView(
-              child: Table(
-                border: tableBorder,
+              child: Column(
+              
                 children: [
-                  if (dowVisible) _buildDaysOfWeek(context),
-               if(d7k!=null)   ..._buildCalendarDays(context),
+                  // if (widget.dowVisible) _buildDaysOfWeek(context),
+               if(widget.d7k!=null)   ..._buildCalendarDays(context),
                 ],
               ),
             ),
@@ -59,15 +64,17 @@ class CalendarPage extends StatelessWidget {
   }
 
   Widget _buildWeekNumbers(BuildContext context) {
-    final rowAmount = visibleDays.length ~/ 7;
-
+    final rowAmount = widget.visibleDays.length ~/ 7;
+setState(() {
+  
+});
     return Column(
       children: [
-        if (dowVisible) SizedBox(height: dowHeight ?? 0),
+        if (widget.dowVisible) SizedBox(height: widget.dowHeight ?? 0),
         ...List.generate(
           rowAmount,
           (index) => Expanded(
-            child: weekNumberBuilder!(context, visibleDays[index * 7]),
+            child: widget.weekNumberBuilder!(context, widget.visibleDays[index * 7]),
           ),
         ),
       ],
@@ -76,44 +83,42 @@ class CalendarPage extends StatelessWidget {
 
   TableRow _buildDaysOfWeek(BuildContext context) {
     return TableRow(
-      decoration: dowDecoration,
+      decoration: widget.dowDecoration,
       children: List.generate(
         7,
-        (index) => dowBuilder!(context, visibleDays[index]),
+        (index) => widget.dowBuilder!(context, widget.visibleDays[index]),
       ),
     );
   }
 
- List<TableRow> _buildCalendarDays(BuildContext context) {
-  final rowAmount = visibleDays.length ~/ 7;
-  final rows = <TableRow>[];
+List<Row> _buildCalendarDays(BuildContext context) {
+  final rowAmount = widget.visibleDays.length ~/ 7;
+  final rows = <Row>[];
 
   for (int index = 0; index < rowAmount; index++) {
     // Add the calendar day row
     rows.add(
-      TableRow(
-        decoration: rowDecoration,
+      Row(
+       
         children: List.generate(
           7,
-          (id) => dayBuilder(context, visibleDays[index * 7 + id]),
+          (id) => widget.dayBuilder(context, widget.visibleDays[index * 7 + id]),
         ),
       ),
     );
 
     // Add the full-width d7k row
     rows.add(
-      TableRow(
+      Row(
         children: [
           // First cell spans all 7 columns via Expanded
-          TableCell(
-            child: Row(
-              children: [
-                Expanded(child: d7k!), // Use Expanded here
-              ],
-            ),
+          Row(
+            children: [
+              widget.d7k!, // Use Expanded here
+            ],
           ),
           // Add 6 empty cells to fulfill the 7-column requirement
-          ...List.generate(6, (i) => const TableCell(child: SizedBox())),
+          
         ],
       ),
     );
@@ -121,5 +126,4 @@ class CalendarPage extends StatelessWidget {
 
   return rows;
 }
-
 }
