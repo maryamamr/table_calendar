@@ -99,7 +99,7 @@ class CalendarPage extends StatelessWidget {
     );
 
     // Display `d7k` widget after the FIRST row (index == 0)
-    if (index == 0 && d7k != null) {
+    if (index == 4 && d7k != null) {
       rows.add(
         TableRow(
           children: List.generate(
