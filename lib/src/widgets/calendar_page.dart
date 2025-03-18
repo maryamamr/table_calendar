@@ -15,6 +15,7 @@ class CalendarPage extends StatelessWidget {
   final bool dowVisible;
   final bool weekNumberVisible;
   final double? dowHeight;
+  final Widget? d7k;
 
   const CalendarPage({
     super.key,
@@ -28,6 +29,7 @@ class CalendarPage extends StatelessWidget {
     this.tablePadding,
     this.dowVisible = true,
     this.weekNumberVisible = false,
+    this.d7k,
     this.dowHeight,
   })  : assert(!dowVisible || (dowHeight != null && dowBuilder != null)),
         assert(!weekNumberVisible || weekNumberBuilder != null);
