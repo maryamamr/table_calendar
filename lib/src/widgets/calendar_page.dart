@@ -89,7 +89,7 @@ class CalendarPage extends StatelessWidget {
   final rows = <TableRow>[];
 
   for (int index = 0; index < rowAmount; index++) {
-    // Regular calendar row
+    // Add the calendar day row
     rows.add(
       TableRow(
         decoration: rowDecoration,
@@ -100,19 +100,20 @@ class CalendarPage extends StatelessWidget {
       ),
     );
 
-    // Full-width d7k row
+    // Add the full-width d7k row
     rows.add(
       TableRow(
         children: [
-          // Use a single cell spanning all 7 columns (workaround)
+          // First cell spans all 7 columns via Expanded
           TableCell(
-            child: Container(
-              child: d7k,
-              // Adjust height as needed
+            child: Row(
+              children: [
+                Expanded(child: d7k!), // Use Expanded here
+              ],
             ),
           ),
-          // Add empty containers for remaining cells (required by Table)
-          ...List.generate(6, (i) => SizedBox.shrink()),
+          // Add 6 empty cells to fulfill the 7-column requirement
+          ...List.generate(6, (i) => const TableCell(child: SizedBox())),
         ],
       ),
     );
