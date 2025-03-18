@@ -85,7 +85,7 @@ class CalendarPage extends StatelessWidget {
  List<TableRow> _buildCalendarDays(BuildContext context) {
   final rowAmount = visibleDays.length ~/ 7;
   final rows = <TableRow>[];
-print("xdddddddddddddddddd");
+
   for (int index = 0; index < rowAmount; index++) {
     // Regular calendar row
     rows.add(
@@ -100,6 +100,7 @@ print("xdddddddddddddddddd");
 
     // Check if this is the FIRST row in the month
     if (index == 7 && d7k != null) {
+      print("xdddddddddddddddddd");
       rows.add(
         TableRow(
           children: [
