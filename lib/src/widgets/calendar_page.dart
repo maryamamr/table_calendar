@@ -36,14 +36,14 @@ class CalendarPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Padding(
-        padding: tablePadding ?? EdgeInsets.zero,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            if (weekNumberVisible) _buildWeekNumbers(context),
-            Expanded(
+    return Padding(
+      padding: tablePadding ?? EdgeInsets.zero,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (weekNumberVisible) _buildWeekNumbers(context),
+          Expanded(
+            child: SingleChildScrollView(
               child: Table(
                 border: tableBorder,
                 children: [
@@ -52,8 +52,8 @@ class CalendarPage extends StatelessWidget {
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
