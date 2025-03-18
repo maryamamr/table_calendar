@@ -104,13 +104,7 @@ class CalendarPage extends StatelessWidget {
       rows.add(
         TableRow(
           children: [
-            Container(
-                        width: 59,
-                        height: 59,
-                        color: Colors.red,
-                       ),
-            // empty cells to fill the remaining columns
-            for (int i = 1; i < 7; i++) const SizedBox(),
+           d7k!
           ],
         ),
       );
