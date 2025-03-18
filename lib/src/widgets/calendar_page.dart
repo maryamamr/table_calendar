@@ -99,21 +99,25 @@ class CalendarPage extends StatelessWidget {
         ),
       ),
     );
- rows.add(
-        TableRow(
-          children: [
-           Expanded(child: d7k!),
-            // empty cells to fill the remaining columns
-            for (int i = 1; i < 7; i++)  Container(color: Colors.red,),
-          ],
-        ),
-        
-      );
-    // Check if this is the FIRST row in the month
-   
-    print("index $index");
+
+    // Full-width d7k row
+    rows.add(
+      TableRow(
+        children: [
+          // Use a single cell spanning all 7 columns (workaround)
+          TableCell(
+            child: Container(
+              child: d7k,
+              // Adjust height as needed
+            ),
+          ),
+          // Add empty containers for remaining cells (required by Table)
+          ...List.generate(6, (i) => SizedBox.shrink()),
+        ],
+      ),
+    );
   }
-print(rows.length);
+
   return rows;
 }
 
