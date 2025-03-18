@@ -75,6 +75,7 @@ class CalendarCore extends StatelessWidget {
             : null;
 
         return CalendarPage(
+          d7k: d7k,
           visibleDays: visibleDays,
           dowVisible: dowVisible,
           dowDecoration: dowDecoration,
