@@ -489,7 +489,7 @@ class _TableCalendarState<T> extends State<TableCalendar<T>> {
             },
           ),
         Expanded(
-          flex:1,
+          
           child: TableCalendarBase(
             d7k: widget.d7k,
             onCalendarCreated: (pageController) {
