@@ -99,10 +99,7 @@ class CalendarPage extends StatelessWidget {
         ),
       ),
     );
-
-    // Add `d7k` after the first row (index == 0)
-   
-      rows.add(
+ rows.add(
         TableRow(
           children: List.generate(
             7,
@@ -118,12 +115,14 @@ class CalendarPage extends StatelessWidget {
                 : const SizedBox(), // Empty cells to maintain alignment
           ),
         ),
+        
       );
-    }
-  
-
+    // Check if this is the FIRST row in the month
+   
+    print("index $index");
+  }
+print(rows.length);
   return rows;
 }
-
 
 }
