@@ -1,6 +1,7 @@
 // Copyright 2019 Aleksander Woźniak
 // SPDX-License-Identifier: Apache-2.0
 
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class CalendarPage extends StatelessWidget {
@@ -84,7 +85,7 @@ class CalendarPage extends StatelessWidget {
  List<TableRow> _buildCalendarDays(BuildContext context) {
   final rowAmount = visibleDays.length ~/ 7;
   final rows = <TableRow>[];
-
+print("xdddddddddddddddddd");
   for (int index = 0; index < rowAmount; index++) {
     // Regular calendar row
     rows.add(
@@ -104,7 +105,11 @@ class CalendarPage extends StatelessWidget {
           children: [
             TableCell(
               verticalAlignment: TableCellVerticalAlignment.fill,
-              child: d7k!,
+              child: Container(
+            width: 59,
+            height: 59,
+            color: Colors.red,
+           ),
             ),
             // empty cells to fill the remaining columns
             for (int i = 1; i < 7; i++) const SizedBox(),
