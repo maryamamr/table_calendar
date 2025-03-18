@@ -86,7 +86,7 @@ class CalendarPage extends StatelessWidget {
   final rowAmount = visibleDays.length ~/ 7;
   final rows = <TableRow>[];
 
-  for (int index = 0; index < rowAmount; index++) {
+  for (int index = 0; index < rowAmount+1; index++) {
     // Regular calendar row
     rows.add(
       TableRow(
