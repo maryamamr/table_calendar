@@ -15,7 +15,7 @@ class CalendarPage extends StatelessWidget {
   final bool dowVisible;
   final bool weekNumberVisible;
   final double? dowHeight;
-  final Widget? d7k;
+  final Widget?d7k;
 
   const CalendarPage({
     super.key,
@@ -29,8 +29,7 @@ class CalendarPage extends StatelessWidget {
     this.tablePadding,
     this.dowVisible = true,
     this.weekNumberVisible = false,
-    this.d7k,
-    this.dowHeight,
+    this.dowHeight, this.d7k,
   })  : assert(!dowVisible || (dowHeight != null && dowBuilder != null)),
         assert(!weekNumberVisible || weekNumberBuilder != null);
 
@@ -83,38 +82,39 @@ class CalendarPage extends StatelessWidget {
   }
 
  List<TableRow> _buildCalendarDays(BuildContext context) {
-  List<TableRow> rows = [];
+  final rowAmount = visibleDays.length ~/ 7;
+  final rows = <TableRow>[];
 
- for (int weekIndex = 0; weekIndex < visibleDays.length ~/ 7; weekIndex++) {
-  rows.add(
-    TableRow(
-      decoration: rowDecoration,
-      children: List.generate(
-        7,
-        (id) => dayBuilder(context, visibleDays[weekIndex * 7 + id]),
-    ),
-  ));
-
-  if (_shouldShowExtraWidget(weekIndex)) {
+  for (int index = 0; index < rowAmount; index++) {
+    // Regular calendar row
     rows.add(
       TableRow(
-        children: [
-          d7k ?? const SizedBox(),
-          for (int i = 1; i < 7; i++) const SizedBox(),
-        ],
+        decoration: rowDecoration,
+        children: List.generate(
+          7,
+          (id) => dayBuilder(context, visibleDays[index * 7 + id]),
+        ),
       ),
     );
+
+    // Check if this is the FIRST row in the month
+    if (index == 0 && d7k != null) {
+      rows.add(
+        TableRow(
+          children: [
+            TableCell(
+              verticalAlignment: TableCellVerticalAlignment.fill,
+              child: d7k!,
+            ),
+            // empty cells to fill the remaining columns
+            for (int i = 1; i < 7; i++) const SizedBox(),
+          ],
+        ),
+      );
+    }
   }
-}
 
   return rows;
 }
 
-
-
-bool _shouldShowExtraWidget(int weekIndex) {
-  // Example: Show after the first row (weekIndex == 0)
-  // Change the logic based on your condition.
-  return weekIndex == 0; 
-}
 }
