@@ -99,7 +99,7 @@ class CalendarPage extends StatelessWidget {
     );
 
     // Check if this is the FIRST row in the month
-    if (index == 7 && d7k != null) {
+    if (index == 4 && d7k != null) {
       print("xdddddddddddddddddd");
       rows.add(
         TableRow(
