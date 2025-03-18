@@ -82,18 +82,39 @@ class CalendarPage extends StatelessWidget {
     );
   }
 
-  List<TableRow> _buildCalendarDays(BuildContext context) {
-    final rowAmount = visibleDays.length ~/ 7;
+ List<TableRow> _buildCalendarDays(BuildContext context) {
+  List<TableRow> rows = [];
 
-    return List.generate(
-      rowAmount,
-      (index) => TableRow(
-        decoration: rowDecoration,
-        children: List.generate(
-          7,
-          (id) => dayBuilder(context, visibleDays[index * 7 + id]),
-        ),
+ for (int weekIndex = 0; weekIndex < visibleDays.length ~/ 7; weekIndex++) {
+  rows.add(
+    TableRow(
+      decoration: rowDecoration,
+      children: List.generate(
+        7,
+        (id) => dayBuilder(context, visibleDays[weekIndex * 7 + id]),
+    ),
+  ));
+
+  if (_shouldShowExtraWidget(weekIndex)) {
+    rows.add(
+      TableRow(
+        children: [
+          d7k ?? const SizedBox(),
+          for (int i = 1; i < 7; i++) const SizedBox(),
+        ],
       ),
     );
   }
+}
+
+  return rows;
+}
+
+
+
+bool _shouldShowExtraWidget(int weekIndex) {
+  // Example: Show after the first row (weekIndex == 0)
+  // Change the logic based on your condition.
+  return weekIndex == 0; 
+}
 }
