@@ -29,6 +29,7 @@ class CalendarCore extends StatelessWidget {
   final ScrollPhysics? scrollPhysics;
   final void Function(int, DateTime) onPageChanged;
     final Widget? d7k;
+    final  int weekIndex;
 
 
   const CalendarCore({
@@ -54,7 +55,7 @@ class CalendarCore extends StatelessWidget {
     this.rowDecoration,
     this.tableBorder,
     this.tablePadding,
-    this.scrollPhysics, this.d7k,
+    this.scrollPhysics, this.d7k, required this.weekIndex,
   }) : assert(!dowVisible || (dowHeight != null && dowBuilder != null));
 
   @override
@@ -75,6 +76,7 @@ class CalendarCore extends StatelessWidget {
             : null;
 
         return CalendarPage(
+          weekIndex:weekIndex ,
           d7k: d7k,
           visibleDays: visibleDays,
           dowVisible: dowVisible,
