@@ -45,10 +45,8 @@ class _CalendarPageState extends State<CalendarPage> {
     final width=MediaQuery.of(context).size.width;
     return Padding(
       padding: widget.tablePadding ?? EdgeInsets.zero,
-      child: Container(
-        color: Colors.red,
-        height: 700,
-        width:width,
+      child: Flexible(
+       
         child: Column(
         
           children: [
