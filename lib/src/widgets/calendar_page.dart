@@ -88,10 +88,10 @@ setState(() {
 
       children: List.generate(
         7,
-        (index) => Padding(
-          padding: const EdgeInsetsDirectional.only(end: 2),
-          child: Flexible(child: widget.dowBuilder!(context, widget.visibleDays[index])),
-        ),
+        (index) => Flexible(child: Padding(
+           padding: const EdgeInsetsDirectional.only(end: 2),
+          child: widget.dowBuilder!(context, widget.visibleDays[index]),
+        )),
       ),
     );
   }
