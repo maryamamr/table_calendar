@@ -116,7 +116,7 @@ List<Row> _buildCalendarDays(BuildContext context) {
    if(index==widget.weekIndex&& widget.d7k!=null){
      rows.add(
       Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           // First cell spans all 7 columns via Expanded
           Row(
