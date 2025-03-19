@@ -61,6 +61,7 @@ class CalendarCore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView.builder(
+      
       controller: pageController,
       physics: scrollPhysics,
       itemCount: _getPageCount(calendarFormat, firstDay, lastDay),
