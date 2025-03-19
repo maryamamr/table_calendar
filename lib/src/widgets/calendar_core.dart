@@ -68,13 +68,13 @@ class CalendarCore extends StatelessWidget {
         final baseDay = _getBaseDay(calendarFormat, index);
         final visibleRange = _getVisibleRange(calendarFormat, baseDay);
         final visibleDays = _daysInRange(visibleRange.start, visibleRange.end);
-    
+
         final actualDowHeight = dowVisible ? dowHeight! : 0.0;
         final constrainedRowHeight = constraints.hasBoundedHeight
             ? (constraints.maxHeight - actualDowHeight) /
                 _getRowCount(calendarFormat, baseDay)
             : null;
-    
+
         return CalendarPage(
           weekIndex:weekIndex ,
           d7k: d7k,
@@ -99,7 +99,7 @@ class CalendarCore extends StatelessWidget {
               baseDay =
                   _getFocusedDay(calendarFormat, previousFocusedDay, index);
             }
-    
+
             return SizedBox(
               height: constrainedRowHeight ?? rowHeight,
               child: dayBuilder(context, day, baseDay),
@@ -123,7 +123,7 @@ class CalendarCore extends StatelessWidget {
         } else {
           baseDay = _getFocusedDay(calendarFormat, previousFocusedDay, index);
         }
-    
+
         return onPageChanged(index, baseDay);
       },
     );
