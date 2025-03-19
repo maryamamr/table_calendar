@@ -491,8 +491,8 @@ class _TableCalendarState<T> extends State<TableCalendar<T>> {
               );
             },
           ),
-        Flexible(
-          flex: widget.shouldFillViewport ? 1 : 0,
+        Expanded(
+          // flex: widget.shouldFillViewport ? 1 : 0,
           child: TableCalendarBase(
             weekIndex: widget.weekIndex,
             d7k: widget.d7k,
