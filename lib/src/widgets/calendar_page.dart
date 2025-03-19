@@ -48,13 +48,17 @@ class _CalendarPageState extends State<CalendarPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           if (widget.weekNumberVisible) _buildWeekNumbers(context),
-          Column(
-          
-            children: [
-              if (widget.dowVisible) _buildDaysOfWeek(context),
-             const SizedBox(height: 10,),
-            ..._buildCalendarDays(context),
-            ],
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+              
+                children: [
+                  if (widget.dowVisible) _buildDaysOfWeek(context),
+                 const SizedBox(height: 10,),
+                ..._buildCalendarDays(context),
+                ],
+              ),
+            ),
           ),
         ],
       ),
