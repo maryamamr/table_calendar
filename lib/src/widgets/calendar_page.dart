@@ -45,10 +45,11 @@ class _CalendarPageState extends State<CalendarPage> {
     final width=MediaQuery.of(context).size.width;
     return Padding(
       padding: widget.tablePadding ?? EdgeInsets.zero,
-      child: Flex(
-       direction: Axis.vertical,
-        children: [
-          Column(
+      child: Container(
+        color: Colors.red,
+        height: 900,
+        width:width,
+        child: Column(
         
           children: [
             if (widget.dowVisible) _buildDaysOfWeek(context),
@@ -56,7 +57,6 @@ class _CalendarPageState extends State<CalendarPage> {
           ..._buildCalendarDays(context),
           ],
         ),
-        ]
       ),
     );
   }
