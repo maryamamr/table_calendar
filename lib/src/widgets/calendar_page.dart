@@ -42,6 +42,7 @@ class CalendarPage extends StatefulWidget {
 class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
+    final width=MediaQuery.of(context).size.width;
     return Padding(
       padding: widget.tablePadding ?? EdgeInsets.zero,
       child: Row(
@@ -51,7 +52,7 @@ class _CalendarPageState extends State<CalendarPage> {
           Container(
             color: Colors.red,
             height: 600,
-            width: double.infinity,
+            width:width,
             child: Column(
             
               children: [
