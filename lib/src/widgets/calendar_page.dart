@@ -54,7 +54,8 @@ class _CalendarPageState extends State<CalendarPage> {
               
                 children: [
                   if (widget.dowVisible) _buildDaysOfWeek(context),
-               if(widget.d7k!=null)   ..._buildCalendarDays(context),
+                 const SizedBox(height: 10,),
+                ..._buildCalendarDays(context),
                 ],
               ),
             ),
