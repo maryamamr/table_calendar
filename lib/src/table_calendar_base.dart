@@ -194,77 +194,79 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: SimpleGestureDetector(
-        onVerticalSwipe: _canScrollVertically ? widget.onVerticalSwipe : null,
-        swipeConfig: widget.simpleSwipeConfig,
-        child: ValueListenableBuilder<double>(
-          valueListenable: _pageHeight,
-          builder: (context, value, child) {
-            // final height =
-            //     constraints.hasBoundedHeight ? constraints.maxHeight : value;
-      
-            return AnimatedSize(
-              duration: widget.formatAnimationDuration,
-              curve: widget.formatAnimationCurve,
-              alignment: Alignment.topCenter,
-              child: SizedBox(
-                
-                child: child,
-              ),
-            );
-          },
-          child: CalendarCore(
-            weekIndex: widget.weekIndex,
-            d7k:widget.d7k,
-            constraints: BoxConstraints(),
-            pageController: _pageController,
-            scrollPhysics: _canScrollHorizontally
-                ? const PageScrollPhysics()
-                : const NeverScrollableScrollPhysics(),
-            firstDay: widget.firstDay,
-            lastDay: widget.lastDay,
-            startingDayOfWeek: widget.startingDayOfWeek,
-            calendarFormat: widget.calendarFormat,
-            previousIndex: _previousIndex,
-            focusedDay: _focusedDay,
-            sixWeekMonthsEnforced: widget.sixWeekMonthsEnforced,
-            dowVisible: widget.dowVisible,
-            dowHeight: widget.dowHeight,
-            rowHeight: widget.rowHeight,
-            weekNumbersVisible: widget.weekNumbersVisible,
-            weekNumberBuilder: widget.weekNumberBuilder,
-            dowDecoration: widget.dowDecoration,
-            rowDecoration: widget.rowDecoration,
-            tableBorder: widget.tableBorder,
-            tablePadding: widget.tablePadding,
-            onPageChanged: (index, focusedMonth) {
-              if (!_pageCallbackDisabled) {
-                if (!isSameDay(_focusedDay, focusedMonth)) {
-                  _focusedDay = focusedMonth;
-                }
-      
-                if (widget.calendarFormat == CalendarFormat.month &&
-                    !widget.sixWeekMonthsEnforced 
-                 ) {
-                  final rowCount = _getRowCount(
-                    widget.calendarFormat,
-                    focusedMonth,
-                  );
-                  _pageHeight.value = _getPageHeight(rowCount);
-                }
-      
-                _previousIndex = index;
-                widget.onPageChanged?.call(focusedMonth);
-              }
-      
-              _pageCallbackDisabled = false;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return SimpleGestureDetector(
+          onVerticalSwipe: _canScrollVertically ? widget.onVerticalSwipe : null,
+          swipeConfig: widget.simpleSwipeConfig,
+          child: ValueListenableBuilder<double>(
+            valueListenable: _pageHeight,
+            builder: (context, value, child) {
+              final height =
+                  constraints.hasBoundedHeight ? constraints.maxHeight : value;
+
+              return AnimatedSize(
+                duration: widget.formatAnimationDuration,
+                curve: widget.formatAnimationCurve,
+                alignment: Alignment.topCenter,
+                child: SizedBox(
+                  height: height,
+                  child: child,
+                ),
+              );
             },
-            dowBuilder: widget.dowBuilder,
-            dayBuilder: widget.dayBuilder,
+            child: CalendarCore(
+              weekIndex: widget.weekIndex,
+              d7k:widget.d7k,
+              constraints: constraints,
+              pageController: _pageController,
+              scrollPhysics: _canScrollHorizontally
+                  ? const PageScrollPhysics()
+                  : const NeverScrollableScrollPhysics(),
+              firstDay: widget.firstDay,
+              lastDay: widget.lastDay,
+              startingDayOfWeek: widget.startingDayOfWeek,
+              calendarFormat: widget.calendarFormat,
+              previousIndex: _previousIndex,
+              focusedDay: _focusedDay,
+              sixWeekMonthsEnforced: widget.sixWeekMonthsEnforced,
+              dowVisible: widget.dowVisible,
+              dowHeight: widget.dowHeight,
+              rowHeight: widget.rowHeight,
+              weekNumbersVisible: widget.weekNumbersVisible,
+              weekNumberBuilder: widget.weekNumberBuilder,
+              dowDecoration: widget.dowDecoration,
+              rowDecoration: widget.rowDecoration,
+              tableBorder: widget.tableBorder,
+              tablePadding: widget.tablePadding,
+              onPageChanged: (index, focusedMonth) {
+                if (!_pageCallbackDisabled) {
+                  if (!isSameDay(_focusedDay, focusedMonth)) {
+                    _focusedDay = focusedMonth;
+                  }
+
+                  if (widget.calendarFormat == CalendarFormat.month &&
+                      !widget.sixWeekMonthsEnforced &&
+                      !constraints.hasBoundedHeight) {
+                    final rowCount = _getRowCount(
+                      widget.calendarFormat,
+                      focusedMonth,
+                    );
+                    _pageHeight.value = _getPageHeight(rowCount);
+                  }
+
+                  _previousIndex = index;
+                  widget.onPageChanged?.call(focusedMonth);
+                }
+
+                _pageCallbackDisabled = false;
+              },
+              dowBuilder: widget.dowBuilder,
+              dayBuilder: widget.dayBuilder,
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 

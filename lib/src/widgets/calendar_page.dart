@@ -42,21 +42,25 @@ class CalendarPage extends StatefulWidget {
 class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
-    final width=MediaQuery.of(context).size.width;
     return Padding(
       padding: widget.tablePadding ?? EdgeInsets.zero,
-      child: Container(
-        color: Colors.red,
-        height: 900,
-        width:width,
-        child: Column(
-        
-          children: [
-            if (widget.dowVisible) _buildDaysOfWeek(context),
-           const SizedBox(height: 10,),
-          ..._buildCalendarDays(context),
-          ],
-        ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (widget.weekNumberVisible) _buildWeekNumbers(context),
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+              
+                children: [
+                  if (widget.dowVisible) _buildDaysOfWeek(context),
+                 const SizedBox(height: 10,),
+                ..._buildCalendarDays(context),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
