@@ -49,10 +49,7 @@ class _CalendarPageState extends State<CalendarPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           if (widget.weekNumberVisible) _buildWeekNumbers(context),
-          Container(
-            color: Colors.red,
-            height: 600,
-            width:width,
+          FittedBox(
             child: Column(
             
               children: [
