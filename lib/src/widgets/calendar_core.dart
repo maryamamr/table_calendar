@@ -60,74 +60,72 @@ class CalendarCore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: PageView.builder(
-        controller: pageController,
-        physics: scrollPhysics,
-        itemCount: _getPageCount(calendarFormat, firstDay, lastDay),
-        itemBuilder: (context, index) {
-          final baseDay = _getBaseDay(calendarFormat, index);
-          final visibleRange = _getVisibleRange(calendarFormat, baseDay);
-          final visibleDays = _daysInRange(visibleRange.start, visibleRange.end);
-      
-          final actualDowHeight = dowVisible ? dowHeight! : 0.0;
-          final constrainedRowHeight = constraints.hasBoundedHeight
-              ? (constraints.maxHeight - actualDowHeight) /
-                  _getRowCount(calendarFormat, baseDay)
-              : null;
-      
-          return CalendarPage(
-            weekIndex:weekIndex ,
-            d7k: d7k,
-            visibleDays: visibleDays,
-            dowVisible: dowVisible,
-            dowDecoration: dowDecoration,
-            rowDecoration: rowDecoration,
-            tableBorder: tableBorder,
-            tablePadding: tablePadding,
-            dowBuilder: (context, day) {
-              return SizedBox(
-                height: dowHeight,
-                child: dowBuilder?.call(context, day),
-              );
-            },
-            dayBuilder: (context, day) {
-              DateTime baseDay;
-              final previousFocusedDay = focusedDay;
-              if (previousFocusedDay == null || previousIndex == null) {
-                baseDay = _getBaseDay(calendarFormat, index);
-              } else {
-                baseDay =
-                    _getFocusedDay(calendarFormat, previousFocusedDay, index);
-              }
-      
-              return SizedBox(
-                height: constrainedRowHeight ?? rowHeight,
-                child: dayBuilder(context, day, baseDay),
-              );
-            },
-            dowHeight: dowHeight,
-            weekNumberVisible: weekNumbersVisible,
-            weekNumberBuilder: (context, day) {
-              return SizedBox(
-                height: constrainedRowHeight ?? rowHeight,
-                child: weekNumberBuilder?.call(context, day),
-              );
-            },
-          );
-        },
-        onPageChanged: (index) {
-          DateTime baseDay;
-          final previousFocusedDay = focusedDay;
-          if (previousFocusedDay == null || previousIndex == null) {
-            baseDay = _getBaseDay(calendarFormat, index);
-          } else {
-            baseDay = _getFocusedDay(calendarFormat, previousFocusedDay, index);
-          }
-      
-          return onPageChanged(index, baseDay);
-        },
-      ),
+    return PageView.builder(
+      controller: pageController,
+      physics: scrollPhysics,
+      itemCount: _getPageCount(calendarFormat, firstDay, lastDay),
+      itemBuilder: (context, index) {
+        final baseDay = _getBaseDay(calendarFormat, index);
+        final visibleRange = _getVisibleRange(calendarFormat, baseDay);
+        final visibleDays = _daysInRange(visibleRange.start, visibleRange.end);
+    
+        final actualDowHeight = dowVisible ? dowHeight! : 0.0;
+        final constrainedRowHeight = constraints.hasBoundedHeight
+            ? (constraints.maxHeight - actualDowHeight) /
+                _getRowCount(calendarFormat, baseDay)
+            : null;
+    
+        return CalendarPage(
+          weekIndex:weekIndex ,
+          d7k: d7k,
+          visibleDays: visibleDays,
+          dowVisible: dowVisible,
+          dowDecoration: dowDecoration,
+          rowDecoration: rowDecoration,
+          tableBorder: tableBorder,
+          tablePadding: tablePadding,
+          dowBuilder: (context, day) {
+            return SizedBox(
+              height: dowHeight,
+              child: dowBuilder?.call(context, day),
+            );
+          },
+          dayBuilder: (context, day) {
+            DateTime baseDay;
+            final previousFocusedDay = focusedDay;
+            if (previousFocusedDay == null || previousIndex == null) {
+              baseDay = _getBaseDay(calendarFormat, index);
+            } else {
+              baseDay =
+                  _getFocusedDay(calendarFormat, previousFocusedDay, index);
+            }
+    
+            return SizedBox(
+              height: constrainedRowHeight ?? rowHeight,
+              child: dayBuilder(context, day, baseDay),
+            );
+          },
+          dowHeight: dowHeight,
+          weekNumberVisible: weekNumbersVisible,
+          weekNumberBuilder: (context, day) {
+            return SizedBox(
+              height: constrainedRowHeight ?? rowHeight,
+              child: weekNumberBuilder?.call(context, day),
+            );
+          },
+        );
+      },
+      onPageChanged: (index) {
+        DateTime baseDay;
+        final previousFocusedDay = focusedDay;
+        if (previousFocusedDay == null || previousIndex == null) {
+          baseDay = _getBaseDay(calendarFormat, index);
+        } else {
+          baseDay = _getFocusedDay(calendarFormat, previousFocusedDay, index);
+        }
+    
+        return onPageChanged(index, baseDay);
+      },
     );
   }
 
