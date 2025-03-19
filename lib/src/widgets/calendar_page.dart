@@ -51,7 +51,7 @@ class _CalendarPageState extends State<CalendarPage> {
           Container(
             color: Colors.red,
             height: 600,
-            width: 400,
+            width: double.infinity,
             child: Column(
             
               children: [
