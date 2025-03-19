@@ -45,18 +45,12 @@ class _CalendarPageState extends State<CalendarPage> {
     return Expanded(
       child: Padding(
         padding: widget.tablePadding ?? EdgeInsets.zero,
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+        child: Column(
+        
           children: [
-            if (widget.weekNumberVisible) _buildWeekNumbers(context),
-            Column(
-            
-              children: [
-                if (widget.dowVisible) _buildDaysOfWeek(context),
-               const SizedBox(height: 10,),
-              ..._buildCalendarDays(context),
-              ],
-            ),
+            if (widget.dowVisible) _buildDaysOfWeek(context),
+           const SizedBox(height: 10,),
+          ..._buildCalendarDays(context),
           ],
         ),
       ),
