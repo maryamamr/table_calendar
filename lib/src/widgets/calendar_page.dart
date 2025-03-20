@@ -114,12 +114,21 @@ List<Row> _buildCalendarDays(BuildContext context) {
       rows.add(
         Row(
           children: [
-            // Use Expanded to ensure the d7k widget takes available width without overflow
             Expanded(
-              child: Container(
-                // Add constraints to prevent overflow in height direction if needed
-                constraints: const BoxConstraints(minHeight: 0),
-                child: widget.d7k!,
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  return SingleChildScrollView(
+                    physics: const ClampingScrollPhysics(),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        minWidth: constraints.maxWidth,
+                        // Set a reasonable max height to prevent overflow
+                        maxHeight: MediaQuery.of(context).size.height * 0.3,
+                      ),
+                      child: widget.d7k!,
+                    ),
+                  );
+                },
               ),
             ),
           ],
