@@ -33,7 +33,7 @@ class TableCalendarBase extends StatefulWidget {
   final SimpleSwipeConfig simpleSwipeConfig;
   final Map<CalendarFormat, String> availableCalendarFormats;
   final SwipeCallback? onVerticalSwipe;
-       Widget? d7k;
+       Widget? eventWidget;
       final int weekIndex;
 
   final void Function(DateTime focusedDay)? onPageChanged;
@@ -75,7 +75,7 @@ class TableCalendarBase extends StatefulWidget {
     },
     this.onVerticalSwipe,
     this.onPageChanged,
-    this.onCalendarCreated, this.d7k, required this.weekIndex,
+    this.onCalendarCreated, this.eventWidget, required this.weekIndex,
   })  : assert(!dowVisible || (dowHeight != null && dowBuilder != null)),
         assert(isSameDay(focusedDay, firstDay) || focusedDay.isAfter(firstDay)),
         assert(isSameDay(focusedDay, lastDay) || focusedDay.isBefore(lastDay));
@@ -117,7 +117,7 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
     super.didUpdateWidget(oldWidget);
 if(_focusedDay.month!=widget.focusedDay.month){
                 setState(() {
-   widget.d7k=null;
+   widget.eventWidget=null;
 });
   print("yaba");
 }
@@ -222,7 +222,7 @@ if(_focusedDay.month!=widget.focusedDay.month){
             },
             child: CalendarCore(
               weekIndex: widget.weekIndex,
-              d7k:widget.d7k,
+              eventWidget:widget.eventWidget,
               constraints: constraints,
               pageController: _pageController,
               scrollPhysics: _canScrollHorizontally
@@ -279,7 +279,7 @@ if(_focusedDay.month!=widget.focusedDay.month){
     final tablePaddingHeight = widget.tablePadding?.vertical ?? 0.0;
     final dowHeight = widget.dowVisible ? widget.dowHeight! : 0.0;
     var height= dowHeight + rowCount * widget.rowHeight + tablePaddingHeight+10;
-    if(widget.d7k!=null){
+    if(widget.eventWidget!=null){
       height+=158;
     }
     return height;

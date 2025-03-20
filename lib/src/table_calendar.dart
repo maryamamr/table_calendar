@@ -54,7 +54,7 @@ class TableCalendar<T> extends StatefulWidget {
   /// Days before it will use `disabledStyle` and trigger `onDisabledDayTapped` callback.
   final DateTime firstDay;
 
-  final Widget?d7k;
+  final Widget?eventWidget;
 
   final int weekIndex;
 
@@ -273,7 +273,7 @@ class TableCalendar<T> extends StatefulWidget {
     this.onHeaderLongPressed,
     this.onPageChanged,
     this.onFormatChanged,
-    this.onCalendarCreated, this.d7k,  this.weekIndex=0,
+    this.onCalendarCreated, this.eventWidget,  this.weekIndex=0,
   })  : assert(availableCalendarFormats.keys.contains(calendarFormat)),
         assert(availableCalendarFormats.length <= CalendarFormat.values.length),
         assert(
@@ -495,7 +495,7 @@ class _TableCalendarState<T> extends State<TableCalendar<T>> {
           flex: widget.shouldFillViewport ? 1 : 0,
           child: TableCalendarBase(
             weekIndex: widget.weekIndex,
-            d7k: widget.d7k,
+            eventWidget: widget.eventWidget,
             onCalendarCreated: (pageController) {
               _pageController = pageController;
               widget.onCalendarCreated?.call(pageController);

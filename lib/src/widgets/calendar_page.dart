@@ -16,7 +16,7 @@ class CalendarPage extends StatefulWidget {
   final bool dowVisible;
   final bool weekNumberVisible;
   final double? dowHeight;
-  final Widget?d7k;
+  final Widget?eventWidget;
   final int weekIndex;
 
   const CalendarPage({
@@ -31,7 +31,7 @@ class CalendarPage extends StatefulWidget {
     this.tablePadding,
     this.dowVisible = true,
     this.weekNumberVisible = false,
-    this.dowHeight, this.d7k,  this.weekIndex=0,
+    this.dowHeight, this.eventWidget,  this.weekIndex=0,
   })  : assert(!dowVisible || (dowHeight != null && dowBuilder != null)),
         assert(!weekNumberVisible || weekNumberBuilder != null);
 
@@ -110,14 +110,14 @@ List<Row> _buildCalendarDays(BuildContext context) {
     );
 
     // Add the full-width d7k row
-    if(index==widget.weekIndex && widget.d7k!=null){
+    if(index==widget.weekIndex && widget.eventWidget!=null){
       rows.add(
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             // Use Expanded to ensure the widget takes full width
             Expanded(
-              child: widget.d7k!,
+              child: widget.eventWidget!,
             ),
           ],
         ),
