@@ -132,7 +132,7 @@ class CalendarCore extends StatelessWidget {
   int _getPageCount(CalendarFormat format, DateTime first, DateTime last) {
     switch (format) {
       case CalendarFormat.month:
-        return _getMonthCount(first, last) + 1;
+        return _getMonthCount(first, last) + 10;
       case CalendarFormat.twoWeeks:
         return _getTwoWeekCount(first, last) + 1;
       case CalendarFormat.week:
