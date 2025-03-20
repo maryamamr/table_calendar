@@ -49,15 +49,13 @@ class _CalendarPageState extends State<CalendarPage> {
         children: [
           if (widget.weekNumberVisible) _buildWeekNumbers(context),
           Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-              
-                children: [
-                  if (widget.dowVisible) _buildDaysOfWeek(context),
-                 const SizedBox(height: 10,),
-                ..._buildCalendarDays(context),
-                ],
-              ),
+            child: Column(
+            
+              children: [
+                if (widget.dowVisible) _buildDaysOfWeek(context),
+               const SizedBox(height: 10,),
+              ..._buildCalendarDays(context),
+              ],
             ),
           ),
         ],
