@@ -130,6 +130,8 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
         widget.dowVisible != oldWidget.dowVisible ||
         widget.sixWeekMonthsEnforced != oldWidget.sixWeekMonthsEnforced) {
       final rowCount = _getRowCount(widget.calendarFormat, _focusedDay);
+
+      print("dididididi");
       _pageHeight.value = _getPageHeight(rowCount);
     }
   }
