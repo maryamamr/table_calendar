@@ -42,23 +42,17 @@ class CalendarPage extends StatefulWidget {
 class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: widget.tablePadding ?? EdgeInsets.zero,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (widget.weekNumberVisible) _buildWeekNumbers(context),
-          Expanded(
-            child: Column(
-            
-              children: [
-                if (widget.dowVisible) _buildDaysOfWeek(context),
-               const SizedBox(height: 10,),
-              ..._buildCalendarDays(context),
-              ],
-            ),
-          ),
-        ],
+    return Expanded(
+      child: Padding(
+        padding: widget.tablePadding ?? EdgeInsets.zero,
+        child: Column(
+        
+          children: [
+            if (widget.dowVisible) _buildDaysOfWeek(context),
+           const SizedBox(height: 10,),
+          ..._buildCalendarDays(context),
+          ],
+        ),
       ),
     );
   }
