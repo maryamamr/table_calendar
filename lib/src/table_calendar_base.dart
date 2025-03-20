@@ -115,7 +115,9 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
   @override
   void didUpdateWidget(TableCalendarBase oldWidget) {
     super.didUpdateWidget(oldWidget);
-
+if(_focusedDay.month!=widget.focusedDay.month){
+  print("yaba");
+}
     if (_focusedDay != widget.focusedDay ||
         widget.calendarFormat != oldWidget.calendarFormat ||
         widget.startingDayOfWeek != oldWidget.startingDayOfWeek) {
