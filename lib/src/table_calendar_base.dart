@@ -35,6 +35,7 @@ class TableCalendarBase extends StatefulWidget {
   final SwipeCallback? onVerticalSwipe;
        Widget? eventWidget;
       final int weekIndex;
+      final double eventWidgetHeight;
 
   final void Function(DateTime focusedDay)? onPageChanged;
   final void Function(PageController pageController)? onCalendarCreated;
@@ -76,6 +77,7 @@ class TableCalendarBase extends StatefulWidget {
     this.onVerticalSwipe,
     this.onPageChanged,
     this.onCalendarCreated, this.eventWidget, required this.weekIndex,
+    this.eventWidgetHeight=158
   })  : assert(!dowVisible || (dowHeight != null && dowBuilder != null)),
         assert(isSameDay(focusedDay, firstDay) || focusedDay.isAfter(firstDay)),
         assert(isSameDay(focusedDay, lastDay) || focusedDay.isBefore(lastDay));
@@ -280,7 +282,7 @@ if(_focusedDay.month!=widget.focusedDay.month){
     final dowHeight = widget.dowVisible ? widget.dowHeight! : 0.0;
     var height= dowHeight + rowCount * widget.rowHeight + tablePaddingHeight+10;
     if(widget.eventWidget!=null){
-      height+=158;
+      height+=widget.eventWidgetHeight;
     }
     return height;
   }

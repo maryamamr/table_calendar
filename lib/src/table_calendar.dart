@@ -58,6 +58,8 @@ class TableCalendar<T> extends StatefulWidget {
 
   final int weekIndex;
 
+  final double eventWidgetHeight;
+
   /// The last active day of `TableCalendar`.
   /// Blocks swiping to days after it.
   ///
@@ -274,6 +276,7 @@ class TableCalendar<T> extends StatefulWidget {
     this.onPageChanged,
     this.onFormatChanged,
     this.onCalendarCreated, this.eventWidget,  this.weekIndex=0,
+    this.eventWidgetHeight=158
   })  : assert(availableCalendarFormats.keys.contains(calendarFormat)),
         assert(availableCalendarFormats.length <= CalendarFormat.values.length),
         assert(
