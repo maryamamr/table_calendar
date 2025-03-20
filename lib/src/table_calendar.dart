@@ -54,7 +54,7 @@ class TableCalendar<T> extends StatefulWidget {
   /// Days before it will use `disabledStyle` and trigger `onDisabledDayTapped` callback.
   final DateTime firstDay;
 
-  final Widget?d7k;
+   Widget?d7k;
 
   final int weekIndex;
 
@@ -523,6 +523,9 @@ class _TableCalendarState<T> extends State<TableCalendar<T>> {
             sixWeekMonthsEnforced: widget.sixWeekMonthsEnforced,
             onVerticalSwipe: _swipeCalendarFormat,
             onPageChanged: (focusedDay) {
+              setState(() {
+   widget.d7k=null;
+});
               _focusedDay.value = focusedDay;
               widget.onPageChanged?.call(focusedDay);
             },

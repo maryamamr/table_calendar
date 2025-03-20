@@ -33,7 +33,7 @@ class TableCalendarBase extends StatefulWidget {
   final SimpleSwipeConfig simpleSwipeConfig;
   final Map<CalendarFormat, String> availableCalendarFormats;
   final SwipeCallback? onVerticalSwipe;
-       Widget? d7k;
+      final Widget? d7k;
       final int weekIndex;
 
   final void Function(DateTime focusedDay)? onPageChanged;
@@ -120,9 +120,7 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
         widget.calendarFormat != oldWidget.calendarFormat ||
         widget.startingDayOfWeek != oldWidget.startingDayOfWeek) {
       final shouldAnimate = _focusedDay != widget.focusedDay;
-setState(() {
-   widget.d7k=null;
-});
+
       _focusedDay = widget.focusedDay;
       _updatePage(shouldAnimate: shouldAnimate);
     }
@@ -132,8 +130,6 @@ setState(() {
         widget.dowVisible != oldWidget.dowVisible ||
         widget.sixWeekMonthsEnforced != oldWidget.sixWeekMonthsEnforced) {
       final rowCount = _getRowCount(widget.calendarFormat, _focusedDay);
-
-     
       _pageHeight.value = _getPageHeight(rowCount);
     }
   }
