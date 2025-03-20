@@ -102,7 +102,6 @@ List<Row> _buildCalendarDays(BuildContext context) {
     // Add the calendar day row
     rows.add(
       Row(
-       
         children: List.generate(
           7,
           (id) => Flexible(child: widget.dayBuilder(context, widget.visibleDays[index * 7 + id])),
@@ -111,23 +110,19 @@ List<Row> _buildCalendarDays(BuildContext context) {
     );
 
     // Add the full-width d7k row
-   if(index==widget.weekIndex&& widget.d7k!=null){
-     rows.add(
-      Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          // First cell spans all 7 columns via Expanded
-          Row(
-            children: [
-              widget.d7k!, // Use Expanded here
-            ],
-          ),
-          // Add 6 empty cells to fulfill the 7-column requirement
-          
-        ],
-      ),
-    );
-   }
+    if(index==widget.weekIndex && widget.d7k!=null){
+      rows.add(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            // Use Expanded to ensure the widget takes full width
+            Expanded(
+              child: widget.d7k!,
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   return rows;
