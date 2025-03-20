@@ -273,7 +273,7 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
   double _getPageHeight(int rowCount) {
     final tablePaddingHeight = widget.tablePadding?.vertical ?? 0.0;
     final dowHeight = widget.dowVisible ? widget.dowHeight! : 0.0;
-    var height= dowHeight + rowCount * widget.rowHeight + tablePaddingHeight;
+    var height= dowHeight + rowCount * widget.rowHeight + tablePaddingHeight+10;
     if(widget.d7k!=null){
       height+=150;
     }
