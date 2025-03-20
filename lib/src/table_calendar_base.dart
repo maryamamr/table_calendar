@@ -280,7 +280,7 @@ if(_focusedDay.month!=widget.focusedDay.month){
     final dowHeight = widget.dowVisible ? widget.dowHeight! : 0.0;
     var height= dowHeight + rowCount * widget.rowHeight + tablePaddingHeight+10;
     if(widget.d7k!=null){
-      height+=150;
+      height+=158;
     }
     return height;
   }
