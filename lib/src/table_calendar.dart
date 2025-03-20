@@ -670,27 +670,27 @@ class _TableCalendarState<T> extends State<TableCalendar<T>> {
                 (shorterSide - widget.calendarStyle.cellMargin.vertical) / 2 -
                 (markerSize * widget.calendarStyle.markersAnchor);
 
-            // markerWidget = PositionedDirectional(
-            //   top: widget.calendarStyle.markersAutoAligned
-            //       ? markerAutoAlignmentTop
-            //       : widget.calendarStyle.markersOffset.top,
-            //   bottom: widget.calendarStyle.markersAutoAligned
-            //       ? null
-            //       : widget.calendarStyle.markersOffset.bottom,
-            //   start: widget.calendarStyle.markersAutoAligned
-            //       ? null
-            //       : widget.calendarStyle.markersOffset.start,
-            //   end: widget.calendarStyle.markersAutoAligned
-            //       ? null
-            //       : widget.calendarStyle.markersOffset.end,
-            //   child: Row(
-            //     mainAxisSize: MainAxisSize.min,
-            //     children: events
-            //         .take(widget.calendarStyle.markersMaxCount)
-            //         .map((event) => _buildSingleMarker(day, event, markerSize))
-            //         .toList(),
-            //   ),
-            // );
+            markerWidget = PositionedDirectional(
+              top: widget.calendarStyle.markersAutoAligned
+                  ? markerAutoAlignmentTop
+                  : widget.calendarStyle.markersOffset.top,
+              bottom: widget.calendarStyle.markersAutoAligned
+                  ? null
+                  : widget.calendarStyle.markersOffset.bottom,
+              start: widget.calendarStyle.markersAutoAligned
+                  ? null
+                  : widget.calendarStyle.markersOffset.start,
+              end: widget.calendarStyle.markersAutoAligned
+                  ? null
+                  : widget.calendarStyle.markersOffset.end,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: events
+                    .take(widget.calendarStyle.markersMaxCount)
+                    .map((event) => _buildSingleMarker(day, event, markerSize))
+                    .toList(),
+              ),
+            );
           }
 
           if (markerWidget != null) {
@@ -710,7 +710,10 @@ class _TableCalendarState<T> extends State<TableCalendar<T>> {
   }
 
   Widget _buildSingleMarker(DateTime day, T event, double markerSize) {
-    return widget.calendarBuilders.singleMarkerBuilder
+    return
+    SizedBox();
+    
+     widget.calendarBuilders.singleMarkerBuilder
             ?.call(context, day, event) ??
         Container(
           width: markerSize,
