@@ -273,18 +273,11 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
   double _getPageHeight(int rowCount) {
     final tablePaddingHeight = widget.tablePadding?.vertical ?? 0.0;
     final dowHeight = widget.dowVisible ? widget.dowHeight! : 0.0;
-    
-    // Base height calculation
-    double baseHeight = dowHeight + rowCount * widget.rowHeight + tablePaddingHeight;
-    
-    // Add additional height for d7k widget if it's present and this is the focused week
-    if (widget.d7k != null) {
-      // Add a reasonable height for the d7k widget
-      // You may need to adjust this value based on your specific needs
-      baseHeight += 150.0; // Estimated height for the event card
+    var height= dowHeight + rowCount * widget.rowHeight + tablePaddingHeight;
+    if(widget.d7k!=null){
+      height+=150;
     }
-    
-    return baseHeight;
+    return height;
   }
 
   int _calculateFocusedPage(
