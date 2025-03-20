@@ -49,15 +49,13 @@ class _CalendarPageState extends State<CalendarPage> {
         children: [
           if (widget.weekNumberVisible) _buildWeekNumbers(context),
           Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-              
-                children: [
-                  if (widget.dowVisible) _buildDaysOfWeek(context),
-                 const SizedBox(height: 10,),
-                ..._buildCalendarDays(context),
-                ],
-              ),
+            child: Column(
+            
+              children: [
+                if (widget.dowVisible) _buildDaysOfWeek(context),
+               const SizedBox(height: 10,),
+              ..._buildCalendarDays(context),
+              ],
             ),
           ),
         ],
@@ -104,7 +102,6 @@ List<Row> _buildCalendarDays(BuildContext context) {
     // Add the calendar day row
     rows.add(
       Row(
-       
         children: List.generate(
           7,
           (id) => Flexible(child: widget.dayBuilder(context, widget.visibleDays[index * 7 + id])),
@@ -113,23 +110,22 @@ List<Row> _buildCalendarDays(BuildContext context) {
     );
 
     // Add the full-width d7k row
-   if(index==widget.weekIndex&& widget.d7k!=null){
-     rows.add(
-      Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          // First cell spans all 7 columns via Expanded
-          Row(
-            children: [
-              widget.d7k!, // Use Expanded here
-            ],
-          ),
-          // Add 6 empty cells to fulfill the 7-column requirement
-          
-        ],
-      ),
-    );
-   }
+    if(index==widget.weekIndex && widget.d7k!=null){
+      rows.add(
+        Row(
+          children: [
+            // Use Expanded to ensure the d7k widget takes available width without overflow
+            Expanded(
+              child: Container(
+                // Add constraints to prevent overflow in height direction if needed
+                constraints: const BoxConstraints(minHeight: 0),
+                child: widget.d7k!,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   return rows;
