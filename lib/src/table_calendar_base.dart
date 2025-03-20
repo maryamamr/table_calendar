@@ -120,7 +120,9 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
         widget.calendarFormat != oldWidget.calendarFormat ||
         widget.startingDayOfWeek != oldWidget.startingDayOfWeek) {
       final shouldAnimate = _focusedDay != widget.focusedDay;
-
+setState(() {
+   widget.d7k=null;
+});
       _focusedDay = widget.focusedDay;
       _updatePage(shouldAnimate: shouldAnimate);
     }
@@ -131,7 +133,7 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
         widget.sixWeekMonthsEnforced != oldWidget.sixWeekMonthsEnforced) {
       final rowCount = _getRowCount(widget.calendarFormat, _focusedDay);
 
-      widget.d7k=null;
+     
       _pageHeight.value = _getPageHeight(rowCount);
     }
   }
