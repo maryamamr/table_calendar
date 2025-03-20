@@ -710,10 +710,7 @@ class _TableCalendarState<T> extends State<TableCalendar<T>> {
   }
 
   Widget _buildSingleMarker(DateTime day, T event, double markerSize) {
-    return
-    SizedBox();
-    
-     widget.calendarBuilders.singleMarkerBuilder
+    return widget.calendarBuilders.singleMarkerBuilder
             ?.call(context, day, event) ??
         Container(
           width: markerSize,
