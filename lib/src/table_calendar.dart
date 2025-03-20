@@ -497,6 +497,7 @@ class _TableCalendarState<T> extends State<TableCalendar<T>> {
         Flexible(
           flex: widget.shouldFillViewport ? 1 : 0,
           child: TableCalendarBase(
+            eventWidgetHeight: widget.eventWidgetHeight,
             weekIndex: widget.weekIndex,
             eventWidget: widget.eventWidget,
             onCalendarCreated: (pageController) {
