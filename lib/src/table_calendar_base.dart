@@ -33,7 +33,7 @@ class TableCalendarBase extends StatefulWidget {
   final SimpleSwipeConfig simpleSwipeConfig;
   final Map<CalendarFormat, String> availableCalendarFormats;
   final SwipeCallback? onVerticalSwipe;
-      final Widget? d7k;
+       Widget? d7k;
       final int weekIndex;
 
   final void Function(DateTime focusedDay)? onPageChanged;
@@ -116,6 +116,9 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
   void didUpdateWidget(TableCalendarBase oldWidget) {
     super.didUpdateWidget(oldWidget);
 if(_focusedDay.month!=widget.focusedDay.month){
+                setState(() {
+   widget.d7k=null;
+});
   print("yaba");
 }
     if (_focusedDay != widget.focusedDay ||
