@@ -138,6 +138,7 @@ if(_focusedDay.month!=widget.focusedDay.month){
         widget.dowHeight != oldWidget.dowHeight ||
         widget.dowVisible != oldWidget.dowVisible ||
         widget.sixWeekMonthsEnforced != oldWidget.sixWeekMonthsEnforced) {
+          print("aloooooooo");
       final rowCount = _getRowCount(widget.calendarFormat, _focusedDay);
       _pageHeight.value = _getPageHeight(rowCount);
     }
