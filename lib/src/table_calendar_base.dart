@@ -33,52 +33,54 @@ class TableCalendarBase extends StatefulWidget {
   final SimpleSwipeConfig simpleSwipeConfig;
   final Map<CalendarFormat, String> availableCalendarFormats;
   final SwipeCallback? onVerticalSwipe;
-       Widget? eventWidget;
-      final int weekIndex;
-      final double eventWidgetHeight;
+  Widget? eventWidget;
+  final int weekIndex;
+  final double eventWidgetHeight;
 
   final void Function(DateTime focusedDay)? onPageChanged;
   final void Function(PageController pageController)? onCalendarCreated;
 
-  TableCalendarBase({
-    super.key,
-    required this.firstDay,
-    required this.lastDay,
-    required this.focusedDay,
-    this.calendarFormat = CalendarFormat.month,
-    this.dowBuilder,
-    required this.dayBuilder,
-    this.dowHeight,
-    required this.rowHeight,
-    this.sixWeekMonthsEnforced = false,
-    this.dowVisible = true,
-    this.weekNumberBuilder,
-    this.weekNumbersVisible = false,
-    this.dowDecoration,
-    this.rowDecoration,
-    this.tableBorder,
-    this.tablePadding,
-    this.formatAnimationDuration = const Duration(milliseconds: 200),
-    this.formatAnimationCurve = Curves.linear,
-    this.pageAnimationEnabled = true,
-    this.pageAnimationDuration = const Duration(milliseconds: 300),
-    this.pageAnimationCurve = Curves.easeOut,
-    this.startingDayOfWeek = StartingDayOfWeek.sunday,
-    this.availableGestures = AvailableGestures.all,
-    this.simpleSwipeConfig = const SimpleSwipeConfig(
-      verticalThreshold: 25.0,
-      swipeDetectionBehavior: SwipeDetectionBehavior.continuousDistinct,
-    ),
-    this.availableCalendarFormats = const {
-      CalendarFormat.month: 'Month',
-      CalendarFormat.twoWeeks: '2 weeks',
-      CalendarFormat.week: 'Week',
-    },
-    this.onVerticalSwipe,
-    this.onPageChanged,
-    this.onCalendarCreated, this.eventWidget, required this.weekIndex,
-    this.eventWidgetHeight=158
-  })  : assert(!dowVisible || (dowHeight != null && dowBuilder != null)),
+  TableCalendarBase(
+      {super.key,
+      required this.firstDay,
+      required this.lastDay,
+      required this.focusedDay,
+      this.calendarFormat = CalendarFormat.month,
+      this.dowBuilder,
+      required this.dayBuilder,
+      this.dowHeight,
+      required this.rowHeight,
+      this.sixWeekMonthsEnforced = false,
+      this.dowVisible = true,
+      this.weekNumberBuilder,
+      this.weekNumbersVisible = false,
+      this.dowDecoration,
+      this.rowDecoration,
+      this.tableBorder,
+      this.tablePadding,
+      this.formatAnimationDuration = const Duration(milliseconds: 200),
+      this.formatAnimationCurve = Curves.linear,
+      this.pageAnimationEnabled = true,
+      this.pageAnimationDuration = const Duration(milliseconds: 300),
+      this.pageAnimationCurve = Curves.easeOut,
+      this.startingDayOfWeek = StartingDayOfWeek.sunday,
+      this.availableGestures = AvailableGestures.all,
+      this.simpleSwipeConfig = const SimpleSwipeConfig(
+        verticalThreshold: 25.0,
+        swipeDetectionBehavior: SwipeDetectionBehavior.continuousDistinct,
+      ),
+      this.availableCalendarFormats = const {
+        CalendarFormat.month: 'Month',
+        CalendarFormat.twoWeeks: '2 weeks',
+        CalendarFormat.week: 'Week',
+      },
+      this.onVerticalSwipe,
+      this.onPageChanged,
+      this.onCalendarCreated,
+      this.eventWidget,
+      required this.weekIndex,
+      this.eventWidgetHeight = 158})
+      : assert(!dowVisible || (dowHeight != null && dowBuilder != null)),
         assert(isSameDay(focusedDay, firstDay) || focusedDay.isAfter(firstDay)),
         assert(isSameDay(focusedDay, lastDay) || focusedDay.isBefore(lastDay));
 
@@ -117,14 +119,13 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
   @override
   void didUpdateWidget(TableCalendarBase oldWidget) {
     super.didUpdateWidget(oldWidget);
-// if(_focusedDay.month!=widget.focusedDay.month){
-//   print(_focusedDay.month);
-//   print(widget.focusedDay.month);
-//                 setState(() {
-//    widget.eventWidget=null;
-// });
-//   print("yaba");
-// }
+    // comment this section becuase we already use event widget at every step 
+    // if (_focusedDay.month != widget.focusedDay.month) {
+    //   setState(() {
+    //     widget.eventWidget = null;
+    //   });
+    //   print("yaba");
+    // }
     if (_focusedDay != widget.focusedDay ||
         widget.calendarFormat != oldWidget.calendarFormat ||
         widget.startingDayOfWeek != oldWidget.startingDayOfWeek) {
@@ -138,7 +139,6 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
         widget.dowHeight != oldWidget.dowHeight ||
         widget.dowVisible != oldWidget.dowVisible ||
         widget.sixWeekMonthsEnforced != oldWidget.sixWeekMonthsEnforced) {
-          print("aloooooooo");
       final rowCount = _getRowCount(widget.calendarFormat, _focusedDay);
       _pageHeight.value = _getPageHeight(rowCount);
     }
@@ -227,7 +227,7 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
             },
             child: CalendarCore(
               weekIndex: widget.weekIndex,
-              eventWidget:widget.eventWidget,
+              eventWidget: widget.eventWidget,
               constraints: constraints,
               pageController: _pageController,
               scrollPhysics: _canScrollHorizontally
@@ -262,7 +262,6 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
                       widget.calendarFormat,
                       focusedMonth,
                     );
-                    print("ya3m");
                     _pageHeight.value = _getPageHeight(rowCount);
                   }
 
@@ -284,11 +283,10 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
   double _getPageHeight(int rowCount) {
     final tablePaddingHeight = widget.tablePadding?.vertical ?? 0.0;
     final dowHeight = widget.dowVisible ? widget.dowHeight! : 0.0;
-    var height= dowHeight + rowCount * widget.rowHeight + tablePaddingHeight+10;
-    print("page height");
-    if(widget.eventWidget!=null){
-      print("event not null");
-      height+=widget.eventWidgetHeight;
+    var height =
+        dowHeight + rowCount * widget.rowHeight + tablePaddingHeight + 10;
+    if (widget.eventWidget != null) {
+      height += widget.eventWidgetHeight;
     }
     return height;
   }
