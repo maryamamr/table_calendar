@@ -284,6 +284,7 @@ if(_focusedDay.month!=widget.focusedDay.month){
     final dowHeight = widget.dowVisible ? widget.dowHeight! : 0.0;
     var height= dowHeight + rowCount * widget.rowHeight + tablePaddingHeight+10;
     if(widget.eventWidget!=null){
+      print("event not null");
       height+=widget.eventWidgetHeight;
     }
     return height;
