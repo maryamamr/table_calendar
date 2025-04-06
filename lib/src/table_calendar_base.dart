@@ -262,6 +262,7 @@ if(_focusedDay.month!=widget.focusedDay.month){
                       widget.calendarFormat,
                       focusedMonth,
                     );
+                    print("ya3m");
                     _pageHeight.value = _getPageHeight(rowCount);
                   }
 
