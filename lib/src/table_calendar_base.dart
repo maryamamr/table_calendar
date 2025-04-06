@@ -118,6 +118,8 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
   void didUpdateWidget(TableCalendarBase oldWidget) {
     super.didUpdateWidget(oldWidget);
 if(_focusedDay.month!=widget.focusedDay.month){
+  print(_focusedDay.month);
+  print(widget.focusedDay.month);
                 setState(() {
    widget.eventWidget=null;
 });
