@@ -250,10 +250,14 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
               tableBorder: widget.tableBorder,
               tablePadding: widget.tablePadding,
               onPageChanged: (index, focusedMonth) {
+
                 if (!_pageCallbackDisabled) {
                   if (!isSameDay(_focusedDay, focusedMonth)) {
                     _focusedDay = focusedMonth;
                   }
+
+                  _previousIndex = index;
+                  widget.onPageChanged?.call(focusedMonth);
 
                   if (widget.calendarFormat == CalendarFormat.month &&
                       !widget.sixWeekMonthsEnforced &&
@@ -264,9 +268,6 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
                     );
                     _pageHeight.value = _getPageHeight(rowCount);
                   }
-
-                  _previousIndex = index;
-                  widget.onPageChanged?.call(focusedMonth);
                 }
 
                 _pageCallbackDisabled = false;
