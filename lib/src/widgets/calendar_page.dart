@@ -96,19 +96,21 @@ class _CalendarPageState extends State<CalendarPage> {
     );
   }
 
-  List<Row> _buildCalendarDays(BuildContext context) {
+  List<Flexible> _buildCalendarDays(BuildContext context) {
     final rowAmount = widget.visibleDays.length ~/ 7;
-    final rows = <Row>[];
+    final rows = <Flexible>[];
 
     for (int index = 0; index < rowAmount; index++) {
       // Add the calendar day row
       rows.add(
-        Row(
-          children: List.generate(
-            7,
-            (id) => Flexible(
-                child: widget.dayBuilder(
-                    context, widget.visibleDays[index * 7 + id])),
+        Flexible(
+          child: Row(
+            children: List.generate(
+              7,
+              (id) => Flexible(
+                  child: widget.dayBuilder(
+                      context, widget.visibleDays[index * 7 + id])),
+            ),
           ),
         ),
       );
@@ -116,12 +118,14 @@ class _CalendarPageState extends State<CalendarPage> {
       // Add the full-width row
       if (index == widget.weekIndex && widget.eventWidget != null) {
         rows.add(
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              // Use Expanded to ensure the widget takes full width
-              Expanded(child: widget.eventWidget!),
-            ],
+          Flexible(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                // Use Expanded to ensure the widget takes full width
+                Expanded(child: widget.eventWidget!),
+              ],
+            ),
           ),
         );
       }
