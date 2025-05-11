@@ -119,7 +119,7 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
   @override
   void didUpdateWidget(TableCalendarBase oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // comment this section becuase we already use event widget at every step 
+    // comment this section becuase we already use event widget at every step
     // if (_focusedDay.month != widget.focusedDay.month) {
     //   setState(() {
     //     widget.eventWidget = null;
@@ -137,6 +137,7 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
     if (widget.rowHeight != oldWidget.rowHeight ||
         widget.dowHeight != oldWidget.dowHeight ||
         widget.dowVisible != oldWidget.dowVisible ||
+        widget.eventWidgetHeight != oldWidget.eventWidgetHeight ||
         widget.sixWeekMonthsEnforced != oldWidget.sixWeekMonthsEnforced) {
       final rowCount = _getRowCount(widget.calendarFormat, _focusedDay);
       _pageHeight.value = _getPageHeight(rowCount);

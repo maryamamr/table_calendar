@@ -16,7 +16,7 @@ class CalendarPage extends StatefulWidget {
   final bool dowVisible;
   final bool weekNumberVisible;
   final double? dowHeight;
-  final Widget?eventWidget;
+  final Widget? eventWidget;
   final int weekIndex;
 
   const CalendarPage({
@@ -31,7 +31,9 @@ class CalendarPage extends StatefulWidget {
     this.tablePadding,
     this.dowVisible = true,
     this.weekNumberVisible = false,
-    this.dowHeight, this.eventWidget,  this.weekIndex=0,
+    this.dowHeight,
+    this.eventWidget,
+    this.weekIndex = 0,
   })  : assert(!dowVisible || (dowHeight != null && dowBuilder != null)),
         assert(!weekNumberVisible || weekNumberBuilder != null);
 
@@ -50,11 +52,12 @@ class _CalendarPageState extends State<CalendarPage> {
           if (widget.weekNumberVisible) _buildWeekNumbers(context),
           Expanded(
             child: Column(
-            
               children: [
                 if (widget.dowVisible) _buildDaysOfWeek(context),
-               const SizedBox(height: 10,),
-              ..._buildCalendarDays(context),
+                const SizedBox(
+                  height: 10,
+                ),
+                ..._buildCalendarDays(context),
               ],
             ),
           ),
@@ -65,16 +68,15 @@ class _CalendarPageState extends State<CalendarPage> {
 
   Widget _buildWeekNumbers(BuildContext context) {
     final rowAmount = widget.visibleDays.length ~/ 7;
-setState(() {
-  
-});
+    setState(() {});
     return Column(
       children: [
         if (widget.dowVisible) SizedBox(height: widget.dowHeight ?? 0),
         ...List.generate(
           rowAmount,
           (index) => Expanded(
-            child: widget.weekNumberBuilder!(context, widget.visibleDays[index * 7]),
+            child: widget.weekNumberBuilder!(
+                context, widget.visibleDays[index * 7]),
           ),
         ),
       ],
@@ -83,46 +85,48 @@ setState(() {
 
   Row _buildDaysOfWeek(BuildContext context) {
     return Row(
-
       children: List.generate(
         7,
-        (index) => Flexible(child: Padding(
-           padding: const EdgeInsetsDirectional.only(end: 2),
+        (index) => Flexible(
+            child: Padding(
+          padding: const EdgeInsetsDirectional.only(end: 2),
           child: widget.dowBuilder!(context, widget.visibleDays[index]),
         )),
       ),
     );
   }
 
-List<Row> _buildCalendarDays(BuildContext context) {
-  final rowAmount = widget.visibleDays.length ~/ 7;
-  final rows = <Row>[];
+  List<Row> _buildCalendarDays(BuildContext context) {
+    final rowAmount = widget.visibleDays.length ~/ 7;
+    final rows = <Row>[];
 
-  for (int index = 0; index < rowAmount; index++) {
-    // Add the calendar day row
-    rows.add(
-      Row(
-        children: List.generate(
-          7,
-          (id) => Flexible(child: widget.dayBuilder(context, widget.visibleDays[index * 7 + id])),
-        ),
-      ),
-    );
-
-    // Add the full-width row
-    if(index == widget.weekIndex && widget.eventWidget!= null){
+    for (int index = 0; index < rowAmount; index++) {
+      // Add the calendar day row
       rows.add(
         Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            // Use Expanded to ensure the widget takes full width
-            widget.eventWidget!,
-          ],
+          children: List.generate(
+            7,
+            (id) => Flexible(
+                child: widget.dayBuilder(
+                    context, widget.visibleDays[index * 7 + id])),
+          ),
         ),
       );
-    }
-  }
 
-  return rows;
-}
+      // Add the full-width row
+      if (index == widget.weekIndex && widget.eventWidget != null) {
+        rows.add(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              // Use Expanded to ensure the widget takes full width
+              Expanded(child: widget.eventWidget!),
+            ],
+          ),
+        );
+      }
+    }
+
+    return rows;
+  }
 }
