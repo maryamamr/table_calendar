@@ -125,14 +125,6 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
     //     widget.eventWidget = null;
     //   });
     // }
-    if (_focusedDay != widget.focusedDay ||
-        widget.calendarFormat != oldWidget.calendarFormat ||
-        widget.startingDayOfWeek != oldWidget.startingDayOfWeek) {
-      final shouldAnimate = _focusedDay != widget.focusedDay;
-
-      _focusedDay = widget.focusedDay;
-      _updatePage(shouldAnimate: shouldAnimate);
-    }
 
     if (widget.rowHeight != oldWidget.rowHeight ||
         widget.dowHeight != oldWidget.dowHeight ||
@@ -141,6 +133,15 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
         widget.sixWeekMonthsEnforced != oldWidget.sixWeekMonthsEnforced) {
       final rowCount = _getRowCount(widget.calendarFormat, _focusedDay);
       _pageHeight.value = _getPageHeight(rowCount);
+    }
+
+    if (_focusedDay != widget.focusedDay ||
+        widget.calendarFormat != oldWidget.calendarFormat ||
+        widget.startingDayOfWeek != oldWidget.startingDayOfWeek) {
+      final shouldAnimate = _focusedDay != widget.focusedDay;
+
+      _focusedDay = widget.focusedDay;
+      _updatePage(shouldAnimate: shouldAnimate);
     }
   }
 
@@ -250,7 +251,6 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
               tableBorder: widget.tableBorder,
               tablePadding: widget.tablePadding,
               onPageChanged: (index, focusedMonth) {
-
                 if (!_pageCallbackDisabled) {
                   if (!isSameDay(_focusedDay, focusedMonth)) {
                     _focusedDay = focusedMonth;
