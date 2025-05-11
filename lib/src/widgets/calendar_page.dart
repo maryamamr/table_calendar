@@ -109,16 +109,14 @@ List<Row> _buildCalendarDays(BuildContext context) {
       ),
     );
 
-    // Add the full-width d7k row
-    if(index==widget.weekIndex && widget.eventWidget!=null){
+    // Add the full-width row
+    if(index == widget.weekIndex && widget.eventWidget!= null){
       rows.add(
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             // Use Expanded to ensure the widget takes full width
-            Expanded(
-              child: widget.eventWidget!,
-            ),
+            widget.eventWidget!,
           ],
         ),
       );

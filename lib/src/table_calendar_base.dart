@@ -124,7 +124,6 @@ class _TableCalendarBaseState extends State<TableCalendarBase> {
     //   setState(() {
     //     widget.eventWidget = null;
     //   });
-    //   print("yaba");
     // }
     if (_focusedDay != widget.focusedDay ||
         widget.calendarFormat != oldWidget.calendarFormat ||
